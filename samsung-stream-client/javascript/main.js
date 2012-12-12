@@ -1,12 +1,13 @@
 var widgetAPI = new Common.API.Widget();
 var tvKey = new Common.API.TVKeyValue();
 
-
 var pluginPlayer;
 var pluginNNavi;
 
 var isStarted = false;
 var current;
+
+var content;
 
 var Main = 
 {
@@ -23,6 +24,8 @@ Main.onLoad = function()
 	// get player object
 	pluginPlayer = document.getElementById("pluginPlayer");
 	
+	content = document.getElementById("content");
+	
 	// get firmware object
     //pluginNNavi = document.getElementById("pluginNNavi");
 
@@ -30,6 +33,8 @@ Main.onLoad = function()
 
 	// TODO: fix this with dynamic URL
     pluginPlayer.InitPlayer("http://5.5.5.1:8080/tvserver/structure?path=G:/Music/Yiruma/1.mp3");
+	
+	
 
 	/*
     if(firmware > 'T-INFOLINK2011') {
@@ -80,6 +85,13 @@ Main.MainKeyHandler = function()
 		default :
 			break;
 	}
+}
+
+Main.Content = function()
+{
+	var contents = "";
+	
+	widgetAPI.putInnerHTML(content, contents);
 }
 
 
