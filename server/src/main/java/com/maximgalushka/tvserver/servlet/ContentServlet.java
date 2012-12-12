@@ -95,6 +95,11 @@ public class ContentServlet extends FileSystemServlet{
             }
         }
 
+        if(file == null){
+            printDefault(response);
+            return;
+        }
+
         // Check if file actually exists in filesystem.
         if (!file.exists()) {
             // Do your thing if the file appears to be non-existing.

@@ -1,5 +1,7 @@
 package com.maximgalushka.tvserver.servlet;
 
+import com.maximgalushka.tvserver.model.Content;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -63,19 +65,26 @@ public class FileSystemServlet extends HttpServlet {
     }
 
     protected void printOutput(File[] files, String parent, HttpServletResponse response) throws IOException {
+        response.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html; charset=UTF-8");
         PrintWriter pw = new PrintWriter(response.getWriter());
-        pw.printf("<html><head><title>LIST</title></head><body>");
-        if(parent != null){
-            pw.printf("<br/>PARENT: <a href=\"structure?path=%s\">%s</a>", parent, parent);
-        }
-        pw.println("<ul>");
-        for(File file : files){
-            pw.printf("<li><a href=\"structure?path=%s\">%s</a></li>", file.toString(), file.toString());
-        }
-        pw.println("</ul></body></html>");
+
+        Content content = new Content(parent, files);
+        pw.println(content.toJson());
 
         pw.flush();
         pw.close();
     }
+
+//    pw.printf("<html><head><title>LIST</title></head><body>");
+//    if(parent != null){
+//        pw.printf("<br/>PARENT: <a href=\"structure?path=%s\">%s</a>", parent, parent);
+//    }
+//    pw.println("<ul>");
+//    for(File file : files){
+//        String path = file.getPath().replaceAll("\\\\", "/");
+//        pw.printf("<li><a href=\"structure?path=%s\">%s</a></li>", path, path);
+//    }
+//    pw.println("</ul></body></html>");
 
 }
