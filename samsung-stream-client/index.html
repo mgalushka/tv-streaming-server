@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>samsung-stream-client</title>
+
+		<script type='text/javascript' language='javascript' src='$MANAGER_WIDGET/Common/API/Widget.js'></script>
+		<script type='text/javascript' language='javascript' src='$MANAGER_WIDGET/Common/API/TVKeyValue.js'></script>
+
+		<script language="javascript" type="text/javascript" src="javascript/main.js"></script>
+        
+		<link rel="stylesheet" href="css/main.css" type="text/css">
+	</head>
+
+	<body onload="Main.onLoad();" onunload="Main.onUnload();">
+		<!-- Dummy anchor as focus for key events -->
+		<a href='javascript:void(0);' id='anchor' onkeydown='Main.MainKeyHandler();'></a>
+
+		<!-- Firmware object -->
+		<object id='pluginNNavi' border=0 classid='clsid:SAMSUNG-INFOLINK-NNAVI' style='opacity:0.0; width:0px; height:0px;'></object>
+		
+		<!-- Player object -->
+		<object id="pluginPlayer" style="visibility: hidden; width: 0px; height: 0px; opacity: 0.0" classid="clsid:SAMSUNG-INFOLINK-PLAYER"></object>
+		
+
+	</body>
+</html>
