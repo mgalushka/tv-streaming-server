@@ -1,6 +1,8 @@
 package com.maximgalushka.tvserver.servlet;
 
 import com.maximgalushka.tvserver.model.Content;
+import org.apache.log4j.Logger;
+import sun.rmi.runtime.Log;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -20,11 +22,14 @@ import java.util.LinkedHashMap;
  */
 public class FileSystemServlet extends HttpServlet {
 
+    private static final Logger log = Logger.getLogger(FileSystemServlet.class);
+
     @SuppressWarnings("unchecked")
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        log.debug(String.format("Received request [%s]", request.getQueryString()));
         try {
             LinkedHashMap<String, Object[]> properties
                     = new LinkedHashMap<String, Object[]>(request.getParameterMap());

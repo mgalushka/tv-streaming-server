@@ -19,11 +19,11 @@ import java.util.*;
 public final class Content {
 
     private String parent;
-    private Map<String, ContentType> paths;
+    private List<ContentElement> paths;
     private Gson json;
 
     public Content(String parent, File[] files) {
-        Map<String, ContentType> inner = new HashMap<String, ContentType>(files.length);
+        List<ContentElement> inner = new ArrayList<ContentElement>(files.length);
         for(File file : files){
             ContentType c = null;
             if(file.isDirectory()) c = ContentType.DIRECTORY;
@@ -31,9 +31,9 @@ public final class Content {
                 if(file.getName().endsWith("mp3")) c = ContentType.MEDIA;
                 else c = ContentType.OTHER;
             }
-            inner.put(file.getPath().replaceAll("\\\\", "/"), c);
+            inner.add(new ContentElement(file.getPath().replaceAll("\\\\", "/"), c));
         }
-        this.paths = Collections.unmodifiableMap(inner);
+        this.paths = Collections.unmodifiableList(inner);
         this.parent = parent.replaceAll("\\\\", "/");
         this.json = new Gson();
     }
@@ -42,7 +42,7 @@ public final class Content {
         return parent;
     }
 
-    public Map<String, ContentType> getPaths() {
+    public List<ContentElement> getPaths() {
         return paths;
     }
 
@@ -50,7 +50,6 @@ public final class Content {
         JsonObject root = new JsonObject();
         root.addProperty("parent", parent);
         root.add("paths", this.json.toJsonTree(paths));
-
         return this.json.toJson(root);
     }
 }
