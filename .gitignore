@@ -4,3 +4,6 @@
 *.jar
 *.war
 *.ear
+/server/target
+/server/*.iml
+/server/.idea
