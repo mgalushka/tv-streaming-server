@@ -28,6 +28,16 @@
             <artifactId>servlet-api</artifactId>
             <version>2.5-6.0.2</version>
         </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.2.2</version>
+        </dependency>
+        <dependency>
+            <groupId>net.jcip</groupId>
+            <artifactId>jcip-annotations</artifactId>
+            <version>1.0</version>
+        </dependency>
     </dependencies>
 
 </project>
