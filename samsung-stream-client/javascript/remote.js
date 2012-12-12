@@ -8,48 +8,29 @@ Request.create = function () {
     
 }
 
-Request.sendRequest = function (path) {
+Request.sendRequest = function (path, callback) {
     alert("Request.sendRequest("+path+")");
     http = null;
-	this.sendRequest = function () {
-		if (http) {
-			http.destroy();
-		}
-		http = new XMLHttpRequest();
-		if (http) {
-			http.onreadystatechange = function () {
-				if (http.readyState == 4) {
-					receiveResponse();
-				}
-			};
-			http.open("GET", defaultUrl + escape(path), true);
-			http.send(null);
-		} else {
-			alert("HTTP Object is NULL");
-		}
+
+	
+	if (http) {
+		http.destroy();
 	}
-	var receiveResponse = function () {
-		if (http.status == 200) {
-			alert("Good response"); sendResultFunc(true);
-		} else {
-			alert("Bad response."); sendResultFunc(false);
-		}
-
-		this.getResponseJson = function () {
-			return http;
-		}
-
-		this.getHttpObj = function () {
-			return http;
-		}
-
-		this.abortHttpObj = function () {
-			if (http) {
-				http.abort();
+	alert("http = " + http);
+	http = new XMLHttpRequest();
+	alert("http = " + http);
+	if (http) {
+		http.onreadystatechange = function () {
+			if (http.readyState == 4) {
+				callback();
 			}
-		}
+		};
+		http.open("GET", defaultUrl + escape(path), true);
+		alert("URL = " + defaultUrl + escape(path));
+		http.send();
+	} else {
+		alert("HTTP Object is NULL");
 	}
-    alert("Request.sendRequest("+path+") End");
 }
 
 Request.receiveHandler = function (categoryID) {

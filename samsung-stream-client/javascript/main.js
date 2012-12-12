@@ -34,6 +34,8 @@ Main.onLoad = function()
 	// TODO: fix this with dynamic URL
     pluginPlayer.InitPlayer("http://5.5.5.1:8080/tvserver/structure?path=G:/Music/Yiruma/1.mp3");
 	
+	Request.create();
+	Request.sendRequest("G:/Music/Yiruma", Main.Callback);
 	
 
 	/*
@@ -89,9 +91,16 @@ Main.MainKeyHandler = function()
 
 Main.Content = function()
 {
-	var contents = "";
 	
-	widgetAPI.putInnerHTML(content, contents);
+	
+	Request.sendRequest("", Main.Callback);
+	
 }
 
+
+Main.Callback = function(){
+	alert("callback");
+	var contents = "";
+	widgetAPI.putInnerHTML(content, contents);
+}
 
