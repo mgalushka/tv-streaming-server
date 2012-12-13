@@ -6,7 +6,7 @@ package com.maximgalushka.tvserver.model;
  * @author Maxim Galushka
  * @since 13.12.12
  */
-public final class ContentElement {
+public final class ContentElement implements Comparable<ContentElement>{
 
     private String path;
     private ContentType type;
@@ -22,5 +22,12 @@ public final class ContentElement {
 
     public ContentType getType() {
         return type;
+    }
+
+    @Override
+    public int compareTo(ContentElement o) {
+        if(this.getType().equals(ContentType.MEDIA) && !o.getType().equals(ContentType.MEDIA)) return 1;
+        if(!this.getType().equals(ContentType.MEDIA) && o.getType().equals(ContentType.MEDIA)) return -1;
+        return 0;
     }
 }

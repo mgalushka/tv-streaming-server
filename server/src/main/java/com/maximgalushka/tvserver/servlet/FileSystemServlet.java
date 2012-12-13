@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.LinkedHashMap;
 
 /**
@@ -29,7 +31,7 @@ public class FileSystemServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        log.debug(String.format("Received request [%s]", request.getQueryString()));
+        log.debug(String.format("Received request [%s]", URLDecoder.decode(request.getQueryString(), "UTF-8")));
         try {
             LinkedHashMap<String, Object[]> properties
                     = new LinkedHashMap<String, Object[]>(request.getParameterMap());
@@ -41,7 +43,7 @@ public class FileSystemServlet extends HttpServlet {
             }
             else{
                 if(pathObj.length > 0 && pathObj[0] != null && pathObj[0] instanceof String){
-                    String path = ((String) pathObj[0]).trim();
+                    String path = URLDecoder.decode(((String) pathObj[0]).trim(), "UTF-8");
                     File pathFile = new File(path);
                     if(pathFile.exists()){
                         if(pathFile.isDirectory()){

@@ -28,13 +28,19 @@ public final class Content {
             ContentType c = null;
             if(file.isDirectory()) c = ContentType.DIRECTORY;
             else{
-                if(file.getName().endsWith("mp3")) c = ContentType.MEDIA;
+                if(file.getName().endsWith("mp3") || file.getName().endsWith("avi")) c = ContentType.MEDIA;
                 else c = ContentType.OTHER;
             }
             inner.add(new ContentElement(file.getPath().replaceAll("\\\\", "/"), c));
         }
+        Collections.sort(inner);
         this.paths = Collections.unmodifiableList(inner);
-        this.parent = parent.replaceAll("\\\\", "/");
+        if(parent != null){
+            this.parent = parent.replaceAll("\\\\", "/");
+        }
+        else{
+            this.parent = "";
+        }
         this.json = new Gson();
     }
 
