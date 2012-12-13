@@ -1,4 +1,5 @@
-var defaultUrl = "http://5.5.5.1:8080/tvserver/structure?path="
+var SERVER = "127.0.0.1:8080";
+var defaultUrl = "http://" + SERVER +"/tvserver/structure?path=";
 
 var Request = {
     
@@ -11,7 +12,6 @@ Request.create = function () {
 Request.sendRequest = function (path, callback) {
     alert("Request.sendRequest("+path+")");
     http = null;
-
 	
 	if (http) {
 		http.destroy();
@@ -22,11 +22,12 @@ Request.sendRequest = function (path, callback) {
 	if (http) {
 		http.onreadystatechange = function () {
 			if (http.readyState == 4) {
-				callback();
+				alert(http.responseText);
+				callback(http.responseText);
 			}
 		};
-		http.open("GET", defaultUrl + escape(path), true);
-		alert("URL = " + defaultUrl + escape(path));
+		http.open("GET", defaultUrl + (path), true);
+		alert("URL = " + defaultUrl + (path));
 		http.send();
 	} else {
 		alert("HTTP Object is NULL");
