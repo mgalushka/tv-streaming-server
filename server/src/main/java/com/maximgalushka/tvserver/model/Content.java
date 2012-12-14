@@ -22,13 +22,15 @@ public final class Content {
     private List<ContentElement> paths;
     private Gson json;
 
+    private MediaContentFilter matcher = new MediaContentFilter();
+
     public Content(String parent, File[] files) {
         List<ContentElement> inner = new ArrayList<ContentElement>(files.length);
         for(File file : files){
-            ContentType c = null;
+            ContentType c;
             if(file.isDirectory()) c = ContentType.DIRECTORY;
             else{
-                if(file.getName().endsWith("mp3") || file.getName().endsWith("avi")) c = ContentType.MEDIA;
+                if(matcher.accept(null, file.getName())) c = ContentType.MEDIA;
                 else c = ContentType.OTHER;
             }
             inner.add(new ContentElement(file.getPath().replaceAll("\\\\", "/"), c));
