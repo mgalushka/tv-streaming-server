@@ -1,30 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <widget>
-	<ThumbIcon itemtype="string"></ThumbIcon>
-	<BigThumbIcon itemtype="string"></BigThumbIcon>
-	<ListIcon itemtype="string"></ListIcon>
-	<BigListIcon itemtype="string"></BigListIcon>
-	<type itemtype="string">user</type>
-	<cpname itemtype="string"></cpname>
-	<cplogo itemtype="string"></cplogo>
-	<cpauthjs itemtype="string"></cpauthjs>
-	<ver itemtype="string"></ver>
-	<mgver itemtype="string"></mgver>
-	<fullwidget itemtype="boolean">y</fullwidget>
-	<srcctl itemtype="boolean">y</srcctl>
-	<ticker itemtype="boolean">n</ticker>
-	<childlock itemtype="boolean">n</childlock>
-	<audiomute itemtype="boolean">n</audiomute>
-	<videomute itemtype="boolean">n</videomute>
-	<dcont itemtype="string">y</dcont>
-	<widgetname itemtype="string">DefaultJSScriptPrj</widgetname>
-	<description itemtype="string"></description>
-	<width itemtype="number">960</width>
-	<height itemtype="number">540</height>
-	<author itemtype="group">
-		<name itemtype="string"></name>
-		<email itemtype="string"></email>
-		<link itemtype="string"></link>
-		<organization itemtype="string"></organization>
-	</author>
+    <previewjs>PreviewVideoTutorial</previewjs>
+    <type>user</type>
+    <cpname></cpname>
+    <cplogo></cplogo>
+    <cpauthjs></cpauthjs>
+      <ThumbIcon>Images/icon/Tutorial_Video_106.png</ThumbIcon>
+    <BigThumbIcon>Images/icon/Tutorial_Video_115.png</BigThumbIcon>
+    <ListIcon>Images/icon/Tutorial_Video_85.png</ListIcon>
+    <BigListIcon>Images/icon/Tutorial_Video_95.png</BigListIcon>
+  
+    <ver>1.3</ver>
+    <mgrver></mgrver>
+    <fullwidget>y</fullwidget>
+	<movie>y</movie>
+    <srcctl>y</srcctl>
+    <ticker>n</ticker>
+    <childlock>n</childlock>
+    <audiomute>n</audiomute>
+    <videomute>n</videomute>
+    <dcont>y</dcont>
+    <widgetname>VideoTutorial</widgetname>
+    <description></description>
+    <width>960</width>
+    <height>540</height>
+    <author>
+        <name>Samsung Electronics Co. Ltd.</name>
+        <email></email>
+        <link>http://www.sec.com</link>
+        <organization>Samsung Electronics Co. Ltd.</organization>
+    </author>
 </widget>
