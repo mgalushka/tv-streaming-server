@@ -1,6 +1,7 @@
 package com.maximgalushka.tvserver.servlet;
 
 import com.maximgalushka.tvserver.model.Content;
+import com.maximgalushka.tvserver.model.MediaContentFilter;
 import org.apache.log4j.Logger;
 import sun.rmi.runtime.Log;
 
