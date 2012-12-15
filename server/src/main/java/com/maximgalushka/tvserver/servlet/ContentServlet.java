@@ -1,5 +1,7 @@
 package com.maximgalushka.tvserver.servlet;
 
+import org.apache.log4j.Logger;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
@@ -21,6 +23,8 @@ import java.util.zip.GZIPOutputStream;
  * @since 12.12.12
  */
 public class ContentServlet extends FileSystemServlet{
+
+    private static final Logger log = Logger.getLogger(ContentServlet.class);
 
 
     // Constants ----------------------------------------------------------------------------------
@@ -61,6 +65,8 @@ public class ContentServlet extends FileSystemServlet{
     private void processRequest
     (HttpServletRequest request, HttpServletResponse response, boolean content)
             throws IOException, ServletException {
+
+        log.debug(String.format("Received content request [%s]", URLDecoder.decode(request.getQueryString(), "UTF-8")));
 
         File file = null;
 
