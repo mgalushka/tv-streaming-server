@@ -26,21 +26,20 @@ public final class Content {
 
     public Content(String parent, File[] files) {
         List<ContentElement> inner = new ArrayList<ContentElement>(files.length);
-        for(File file : files){
-            ContentType c;
-            if(file.isDirectory()) c = ContentType.DIRECTORY;
-            else{
-                if(matcher.accept(null, file.getName())) c = ContentType.MEDIA;
-                else c = ContentType.OTHER;
+        for (File file : files) {
+            ContentType contentType;
+            if (file.isDirectory()) contentType = ContentType.DIRECTORY;
+            else {
+                if (matcher.accept(null, file.getName())) contentType = ContentType.MEDIA;
+                else contentType = ContentType.OTHER;
             }
-            inner.add(new ContentElement(file.getPath().replaceAll("\\\\", "/"), c));
+            inner.add(new ContentElement(file.getPath().replaceAll("\\\\", "/"), contentType));
         }
         Collections.sort(inner);
         this.paths = Collections.unmodifiableList(inner);
-        if(parent != null){
+        if (parent != null) {
             this.parent = parent.replaceAll("\\\\", "/");
-        }
-        else{
+        } else {
             this.parent = "";
         }
         this.json = new Gson();
@@ -54,7 +53,7 @@ public final class Content {
         return paths;
     }
 
-    public String toJson(){
+    public String toJson() {
         JsonObject root = new JsonObject();
         root.addProperty("parent", parent);
         root.add("paths", this.json.toJsonTree(paths));
